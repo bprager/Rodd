@@ -1,0 +1,784 @@
+{
+  "packVersion": "1.0.0",
+  "contractId": "ON-WN-C1200-v1.0",
+  "work": "Sigrdrífumál, stanzas 3–4",
+  "profile": {
+    "id": "west-norse-ca-1200",
+    "label": "Classical Old West Norse (Old Icelandic), approximately 1200",
+    "period": "approximately 1150–1250 CE",
+    "region": "Old Icelandic literary tradition",
+    "description": "A consistent teaching reconstruction based on the classical sound system, kept explicitly separate from Modern Icelandic pronunciation."
+  },
+  "sourceWitness": {
+    "shelfmark": "GKS 2365 4to (Codex Regius of the Poetic Edda)",
+    "workLocation": "Sigrdrífumál occupies fols. 31v25–32v34; the target is stanzas 3–4 in the modern division.",
+    "note": "The pack follows the EAE manuscript edition and Pettit's normalized critical edition. It does not claim that normalized spelling reproduces the manuscript's spelling character for character."
+  },
+  "sources": [
+    {
+      "id": "eae-codex-regius",
+      "kind": "manuscript-edition",
+      "citation": "Editiones Arnamagnæanæ Electronicæ, GKS 2365 4to, Sigrdrífumál.",
+      "url": "https://eae.ku.dk/q?form=register&p=eae%2Fvols%2Fstruct%2F369163",
+      "accessed": "2026-09-29"
+    },
+    {
+      "id": "pettit-2023",
+      "kind": "critical-edition",
+      "citation": "Edward Pettit, ed. and trans., The Poetic Edda: A Dual-Language Edition, Sigrdrífumál, pp. 519–536, Open Book Publishers, 2023, DOI 10.11647/OBP.0308.19.",
+      "url": "https://www.openbookpublishers.com/books/10.11647/obp.0308/chapters/10.11647/obp.0308.19",
+      "accessed": "2026-09-29"
+    },
+    {
+      "id": "ut-austin-old-norse",
+      "kind": "university-course",
+      "citation": "Todd B. Krause and Jonathan Slocum, Old Norse Online, sections 1–2, Linguistics Research Center, University of Texas at Austin.",
+      "url": "https://lrc.la.utexas.edu/eieol/norol/10",
+      "accessed": "2026-09-29"
+    },
+    {
+      "id": "barnes-2008",
+      "kind": "academic-grammar",
+      "citation": "Michael Barnes, A New Introduction to Old Norse, Part I: Grammar, 3rd ed., Viking Society for Northern Research, 2008, pp. 3–13.",
+      "url": "https://vsnr.org/wp-content/uploads/2021/11/NION-1.pdf",
+      "accessed": "2026-09-29"
+    }
+  ],
+  "rules": [
+    {
+      "id": "profile-classical",
+      "category": "profile",
+      "statement": "Teach a reconstructed classical Old Norse system and keep it distinct from Modern Icelandic pronunciation.",
+      "confidence": "high",
+      "scorable": false,
+      "evidence": [
+        {"sourceId": "ut-austin-old-norse", "locator": "sections 1–2", "position": "Separates the classical period, approximately 1150–1350, from Modern Icelandic."},
+        {"sourceId": "barnes-2008", "locator": "pp. 3–8", "position": "Describes substantial pronunciation change and presents an Old Norse system separately."}
+      ]
+    },
+    {
+      "id": "text-stanzas-3-4",
+      "category": "text",
+      "statement": "The target text is the normalized reading of Sigrdrífumál stanzas 3–4, divided into eight pedagogical verse lines.",
+      "confidence": "high",
+      "scorable": false,
+      "evidence": [
+        {"sourceId": "eae-codex-regius", "locator": "GKS 2365 4to, Sigrdrífumál", "position": "Supplies the manuscript transcription and normalized reading."},
+        {"sourceId": "pettit-2023", "locator": "Sigrdrífumál 3–4, pp. 520–521", "position": "Supplies a recent normalized critical text and verse division."}
+      ]
+    },
+    {
+      "id": "vowel-qualities",
+      "category": "vowel",
+      "statement": "Use the classical vowel qualities /a e i o u y æ ɔ/ represented in the target words; keep front-rounded /y/ distinct.",
+      "confidence": "high",
+      "scorable": true,
+      "evidence": [
+        {"sourceId": "ut-austin-old-norse", "locator": "sections 1 and 2.2", "position": "Lists classical vowel values and organizes the vowel inventory."},
+        {"sourceId": "barnes-2008", "locator": "section 2.1.1, pp. 8–9", "position": "Lists Old Norse pure-vowel qualities and contrasts."}
+      ],
+      "note": "Exact phonetic openness is less certain than the contrast itself."
+    },
+    {
+      "id": "vowel-length",
+      "category": "quantity",
+      "statement": "Acute accents mark phonemic long vowels; long and short vowels must remain distinct.",
+      "confidence": "high",
+      "scorable": true,
+      "evidence": [
+        {"sourceId": "ut-austin-old-norse", "locator": "section 1", "position": "Pairs short and long values and describes long vowels as nearly twice the duration."},
+        {"sourceId": "barnes-2008", "locator": "section 2.1.1, pp. 8–9", "position": "States that vowel length is normally indicated by an acute accent."}
+      ]
+    },
+    {
+      "id": "diphthongs",
+      "category": "diphthong",
+      "statement": "Treat ei and au in the target as long falling diphthongs rather than monophthongs.",
+      "confidence": "high",
+      "scorable": true,
+      "evidence": [
+        {"sourceId": "ut-austin-old-norse", "locator": "section 1 diphthong table", "position": "Lists au, ei, and ey as the three diphthongs."},
+        {"sourceId": "barnes-2008", "locator": "section 2.1.2, pp. 9–10", "position": "Describes au, ei, and ey as long falling diphthongs."}
+      ]
+    },
+    {
+      "id": "consonant-core",
+      "category": "consonant",
+      "statement": "Use classical stop, nasal, liquid, sibilant, and glide identities rather than their later Modern Icelandic reflexes.",
+      "confidence": "high",
+      "scorable": true,
+      "evidence": [
+        {"sourceId": "ut-austin-old-norse", "locator": "sections 1 and 2.1", "position": "Provides the classical consonant values and inventory."},
+        {"sourceId": "barnes-2008", "locator": "section 2.1.3, pp. 10–12", "position": "Provides the Old Norse spelling-to-consonant correspondences."}
+      ]
+    },
+    {
+      "id": "consonant-dentals",
+      "category": "consonant",
+      "statement": "Pronounce þ as /θ/ and ð as /ð/ in the teaching target.",
+      "confidence": "high",
+      "scorable": true,
+      "evidence": [
+        {"sourceId": "ut-austin-old-norse", "locator": "section 1 consonant table", "position": "Assigns voiceless and voiced English th-like values to þ and ð."},
+        {"sourceId": "barnes-2008", "locator": "section 2.1.3, p. 11", "position": "Assigns thin-like þ and this-like ð values."}
+      ]
+    },
+    {
+      "id": "consonant-f",
+      "category": "consonant",
+      "statement": "Use [f] initially and a voiced [v]-like realization medially or finally for written f; long ff remains voiceless.",
+      "confidence": "high",
+      "scorable": true,
+      "evidence": [
+        {"sourceId": "ut-austin-old-norse", "locator": "section 1, f entries", "position": "Gives [f] initially and [v] medially or finally."},
+        {"sourceId": "barnes-2008", "locator": "section 2.1.3, pp. 10–12", "position": "Gives the same positional distinction and keeps ff long and voiceless."}
+      ]
+    },
+    {
+      "id": "consonant-g",
+      "category": "consonant",
+      "statement": "Use [g] initially and after n, [x] before s or t, and [ɣ] elsewhere; [k] is accepted before s or t.",
+      "confidence": "high",
+      "scorable": true,
+      "evidence": [
+        {"sourceId": "ut-austin-old-norse", "locator": "section 1, g entries", "position": "Gives [g], [x], and voiced [ɣ] by environment."},
+        {"sourceId": "barnes-2008", "locator": "section 2.1.3, pp. 11–12", "position": "Gives the same distribution and allows [k] before s or t."}
+      ]
+    },
+    {
+      "id": "consonant-n",
+      "category": "consonant",
+      "statement": "Use [ŋ] for n immediately before g or k and [n] elsewhere in the target.",
+      "confidence": "high",
+      "scorable": true,
+      "evidence": [
+        {"sourceId": "ut-austin-old-norse", "locator": "section 1, n entries", "position": "Gives the sing-like value before g or k."},
+        {"sourceId": "barnes-2008", "locator": "section 2.1.3, pp. 11–12", "position": "Gives [ŋ] before g or k while retaining the following stop."}
+      ]
+    },
+    {
+      "id": "consonant-r",
+      "category": "consonant",
+      "statement": "Use an alveolar trill [r]; an alveolar tap [ɾ] is an accepted teaching variant.",
+      "confidence": "high",
+      "scorable": true,
+      "evidence": [
+        {"sourceId": "ut-austin-old-norse", "locator": "sections 1 and 2.1", "position": "Describes r as trilled."},
+        {"sourceId": "barnes-2008", "locator": "section 2.1.3, p. 11", "position": "Describes r as rolled."}
+      ],
+      "note": "The tap is a pedagogical allowance, not a separately reconstructed phoneme."
+    },
+    {
+      "id": "consonant-v-disputed",
+      "category": "consonant",
+      "statement": "Teach written v with a bilabial target [β], while accepting [w] and [v] because the two principal teaching sources differ and the sound changed over time.",
+      "confidence": "medium",
+      "scorable": true,
+      "evidence": [
+        {"sourceId": "ut-austin-old-norse", "locator": "section 1, v entry; section 2.2", "position": "Gives a Spanish-b-like bilabial fricative and notes earlier semivowel status."},
+        {"sourceId": "barnes-2008", "locator": "section 2.1.3, p. 11", "position": "Gives an English-w-like value."}
+      ],
+      "note": "This disagreement must remain visible; none of the three supported realizations may cause failure."
+    },
+    {
+      "id": "consonant-p-before-st",
+      "category": "consonant",
+      "statement": "Before s or t, retain [p] as the canonical teaching target and accept [f].",
+      "confidence": "medium",
+      "scorable": true,
+      "evidence": [
+        {"sourceId": "ut-austin-old-norse", "locator": "section 1, p entries", "position": "Gives [f] immediately before s or t."},
+        {"sourceId": "barnes-2008", "locator": "section 2.1.3, pp. 11–12", "position": "Lists [p] and allows [f] before s or t."}
+      ]
+    },
+    {
+      "id": "consonant-gemination",
+      "category": "quantity",
+      "statement": "Doubled consonants are phonemically long and must remain distinct from single consonants.",
+      "confidence": "high",
+      "scorable": true,
+      "evidence": [
+        {"sourceId": "ut-austin-old-norse", "locator": "section 1", "position": "States that doubled consonants were held twice as long as single counterparts."},
+        {"sourceId": "barnes-2008", "locator": "section 2.1.3, pp. 10–11", "position": "States that consonant length is indicated by doubling and lists long counterparts."}
+      ]
+    },
+    {
+      "id": "stress-initial",
+      "category": "stress",
+      "statement": "Place primary stress on the first syllable of the word stem.",
+      "confidence": "high",
+      "scorable": true,
+      "evidence": [
+        {"sourceId": "ut-austin-old-norse", "locator": "section 2.3", "position": "Places primary stress on the first syllable of a word stem."},
+        {"sourceId": "barnes-2008", "locator": "section 2.1, p. 8", "position": "States that stress was in principle always on the first syllable."}
+      ]
+    },
+    {
+      "id": "stress-compounds",
+      "category": "stress",
+      "statement": "In compounds, give primary stress to the first element and secondary stress to the start of the second element.",
+      "confidence": "medium",
+      "scorable": true,
+      "evidence": [
+        {"sourceId": "ut-austin-old-norse", "locator": "section 2.3", "position": "Explicitly describes primary and secondary stress in two-part compounds."},
+        {"sourceId": "barnes-2008", "locator": "section 2.1, p. 8", "position": "Supports the initial primary-stress principle but does not specify all compound details there."}
+      ]
+    },
+    {
+      "id": "unstressed-vowels",
+      "category": "vowel",
+      "statement": "Keep unstressed a, i, and u distinct and do not systematically reduce them to schwa.",
+      "confidence": "high",
+      "scorable": true,
+      "evidence": [
+        {"sourceId": "ut-austin-old-norse", "locator": "section 2.3", "position": "Limits weakly stressed syllables to short a, i, and u."},
+        {"sourceId": "barnes-2008", "locator": "section 2.1.1, p. 9", "position": "Describes the unstressed three-way contrast a, i, u."}
+      ]
+    },
+    {
+      "id": "modern-features-excluded",
+      "category": "profile",
+      "statement": "Do not import Modern Icelandic preaspiration, the later ll realization, modern vowel shifts, or epenthetic u into the classical target.",
+      "confidence": "high",
+      "scorable": false,
+      "evidence": [
+        {"sourceId": "ut-austin-old-norse", "locator": "sections 1–2", "position": "Contrasts these Modern Icelandic developments with the classical system."},
+        {"sourceId": "barnes-2008", "locator": "sections 2.1–2.2, pp. 8–21", "position": "Presents the classical and modern systems separately, including changed length and consonant realizations."}
+      ]
+    },
+    {
+      "id": "prosody-unknown",
+      "category": "prosody",
+      "statement": "No single pitch contour or expressive intonation may be scored as historically correct.",
+      "confidence": "low",
+      "scorable": false,
+      "evidence": [
+        {"sourceId": "barnes-2008", "locator": "section 2.1, p. 8", "position": "States that nothing is known for sure about intonation and that it probably varied by area."}
+      ]
+    }
+  ],
+  "normalizationDecisions": [
+    {
+      "id": "norm-line-division",
+      "selected": "Eight pedagogical lines matching the four printed verse lines in each of stanzas 3 and 4.",
+      "alternatives": ["Smaller metrical half-lines", "A single continuous recitation text"],
+      "rationale": "The printed critical edition gives a stable eight-line learning sequence without altering word order.",
+      "sourceIds": ["eae-codex-regius", "pettit-2023"]
+    },
+    {
+      "id": "norm-okkr",
+      "selected": "okkr",
+      "alternatives": ["okr"],
+      "rationale": "Use Pettit's normalized spelling consistently; record the shorter spelling as an editorial alternative rather than silently mixing editions.",
+      "sourceIds": ["eae-codex-regius", "pettit-2023"]
+    },
+    {
+      "id": "norm-in",
+      "selected": "in",
+      "alternatives": ["hin"],
+      "rationale": "Use the article form printed by the selected critical edition and supported by the electronic manuscript edition.",
+      "sourceIds": ["eae-codex-regius", "pettit-2023"]
+    },
+    {
+      "id": "norm-manvit",
+      "selected": "manvit",
+      "alternatives": ["mannvit"],
+      "rationale": "Use the single-n form printed by the selected critical edition; do not create an unsupported geminate target.",
+      "sourceIds": ["eae-codex-regius", "pettit-2023"]
+    },
+    {
+      "id": "norm-historic-graphemes",
+      "selected": "ǫ in sitjǫndum and fjǫlnýta; Á in Ásynjur",
+      "alternatives": ["ö in modernized spelling", "ǫ́ in historically oriented editions"],
+      "rationale": "Retain the selected edition's normalized Old Norse spelling and do not modernize ǫ to ö.",
+      "sourceIds": ["eae-codex-regius", "pettit-2023"]
+    }
+  ],
+  "lexicon": [
+    {
+      "id": "heill",
+      "surface": "Heill",
+      "normalized": "heill",
+      "canonicalIpa": "/hei̯lː/",
+      "syllables": [{"ipa": "hei̯lː", "stress": "primary"}],
+      "acceptedVariants": [],
+      "confidence": "high",
+      "quantityTargets": [{"segment": "ei̯", "kind": "diphthong"}, {"segment": "lː", "kind": "geminate"}],
+      "ruleIds": ["diphthongs", "consonant-gemination", "stress-initial"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Keep the diphthong moving from e toward i.", "Hold ll longer than a single l."]
+    },
+    {
+      "id": "dagr",
+      "surface": "Dagr",
+      "normalized": "dagr",
+      "canonicalIpa": "/daɣr/",
+      "syllables": [{"ipa": "daɣr", "stress": "primary"}],
+      "acceptedVariants": [{"ipa": "/daɣɾ/", "reason": "An alveolar tap is accepted in place of the target trill.", "sourceIds": ["ut-austin-old-norse", "barnes-2008"]}],
+      "confidence": "high",
+      "quantityTargets": [],
+      "ruleIds": ["vowel-qualities", "consonant-g", "consonant-r", "stress-initial"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Keep the final r audible after the back fricative."]
+    },
+    {
+      "id": "heilir",
+      "surface": "Heilir",
+      "normalized": "heilir",
+      "canonicalIpa": "/ˈhei̯.lir/",
+      "syllables": [{"ipa": "hei̯", "stress": "primary"}, {"ipa": "lir", "stress": "unstressed"}],
+      "acceptedVariants": [{"ipa": "/ˈhei̯.liɾ/", "reason": "An alveolar tap is accepted in place of the target trill.", "sourceIds": ["ut-austin-old-norse", "barnes-2008"]}],
+      "confidence": "high",
+      "quantityTargets": [{"segment": "ei̯", "kind": "diphthong"}],
+      "ruleIds": ["diphthongs", "consonant-r", "stress-initial", "unstressed-vowels"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Stress hei; keep the final i distinct rather than reducing it to schwa."]
+    },
+    {
+      "id": "dags",
+      "surface": "Dags",
+      "normalized": "dags",
+      "canonicalIpa": "/daxs/",
+      "syllables": [{"ipa": "daxs", "stress": "primary"}],
+      "acceptedVariants": [{"ipa": "/daks/", "reason": "Barnes accepts a stop realization of g before s or t.", "sourceIds": ["barnes-2008"]}],
+      "confidence": "high",
+      "quantityTargets": [],
+      "ruleIds": ["vowel-qualities", "consonant-g", "stress-initial"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Keep the g audible as a back fricative before s."]
+    },
+    {
+      "id": "synir",
+      "surface": "synir",
+      "normalized": "synir",
+      "canonicalIpa": "/ˈsy.nir/",
+      "syllables": [{"ipa": "sy", "stress": "primary"}, {"ipa": "nir", "stress": "unstressed"}],
+      "acceptedVariants": [{"ipa": "/ˈsy.niɾ/", "reason": "An alveolar tap is accepted in place of the target trill.", "sourceIds": ["ut-austin-old-norse", "barnes-2008"]}],
+      "confidence": "high",
+      "quantityTargets": [],
+      "ruleIds": ["vowel-qualities", "consonant-r", "stress-initial", "unstressed-vowels"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Round y like German ü while keeping the tongue forward."]
+    },
+    {
+      "id": "heil",
+      "surface": "Heil",
+      "normalized": "heil",
+      "canonicalIpa": "/hei̯l/",
+      "syllables": [{"ipa": "hei̯l", "stress": "primary"}],
+      "acceptedVariants": [],
+      "confidence": "high",
+      "quantityTargets": [{"segment": "ei̯", "kind": "diphthong"}],
+      "ruleIds": ["diphthongs", "stress-initial"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["This form ends in a single l; do not lengthen it like heill."]
+    },
+    {
+      "id": "nott",
+      "surface": "Nótt",
+      "normalized": "nótt",
+      "canonicalIpa": "/noːtː/",
+      "syllables": [{"ipa": "noːtː", "stress": "primary"}],
+      "acceptedVariants": [],
+      "confidence": "high",
+      "quantityTargets": [{"segment": "oː", "kind": "long-vowel"}, {"segment": "tː", "kind": "geminate"}],
+      "ruleIds": ["vowel-length", "consonant-gemination", "stress-initial", "modern-features-excluded"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Preserve both the long vowel and the long consonant without Modern Icelandic preaspiration."]
+    },
+    {
+      "id": "ok",
+      "surface": "ok",
+      "normalized": "ok",
+      "canonicalIpa": "/ok/",
+      "syllables": [{"ipa": "ok", "stress": "primary"}],
+      "acceptedVariants": [],
+      "confidence": "high",
+      "quantityTargets": [],
+      "ruleIds": ["vowel-qualities", "consonant-core", "stress-initial"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": []
+    },
+    {
+      "id": "nipt",
+      "surface": "nipt",
+      "normalized": "nipt",
+      "canonicalIpa": "/nipt/",
+      "syllables": [{"ipa": "nipt", "stress": "primary"}],
+      "acceptedVariants": [{"ipa": "/nift/", "reason": "A sourced fricative realization of p before t.", "sourceIds": ["ut-austin-old-norse", "barnes-2008"]}],
+      "confidence": "medium",
+      "quantityTargets": [],
+      "ruleIds": ["vowel-qualities", "consonant-p-before-st", "stress-initial"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Either a clear p or the documented f-like realization is accepted before t."]
+    },
+    {
+      "id": "oreidum",
+      "surface": "Óreiðum",
+      "normalized": "óreiðum",
+      "canonicalIpa": "/ˈoː.rei̯.ðum/",
+      "syllables": [{"ipa": "oː", "stress": "primary"}, {"ipa": "rei̯", "stress": "unstressed"}, {"ipa": "ðum", "stress": "unstressed"}],
+      "acceptedVariants": [],
+      "confidence": "high",
+      "quantityTargets": [{"segment": "oː", "kind": "long-vowel"}, {"segment": "ei̯", "kind": "diphthong"}],
+      "ruleIds": ["vowel-length", "diphthongs", "consonant-dentals", "stress-initial", "unstressed-vowels"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Keep primary stress on the long first vowel."]
+    },
+    {
+      "id": "augum",
+      "surface": "augum",
+      "normalized": "augum",
+      "canonicalIpa": "/ˈau̯.ɣum/",
+      "syllables": [{"ipa": "au̯", "stress": "primary"}, {"ipa": "ɣum", "stress": "unstressed"}],
+      "acceptedVariants": [],
+      "confidence": "high",
+      "quantityTargets": [{"segment": "au̯", "kind": "diphthong"}],
+      "ruleIds": ["diphthongs", "consonant-g", "stress-initial", "unstressed-vowels"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Keep au as a moving vowel and use the voiced back fricative between vowels."]
+    },
+    {
+      "id": "litid",
+      "surface": "lítið",
+      "normalized": "lítið",
+      "canonicalIpa": "/ˈliː.tið/",
+      "syllables": [{"ipa": "liː", "stress": "primary"}, {"ipa": "tið", "stress": "unstressed"}],
+      "acceptedVariants": [],
+      "confidence": "high",
+      "quantityTargets": [{"segment": "iː", "kind": "long-vowel"}],
+      "ruleIds": ["vowel-length", "consonant-dentals", "stress-initial", "unstressed-vowels"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Hold í; keep the final ð voiced."]
+    },
+    {
+      "id": "okkr",
+      "surface": "okkr",
+      "normalized": "okkr",
+      "canonicalIpa": "/okːr/",
+      "syllables": [{"ipa": "okːr", "stress": "primary"}],
+      "acceptedVariants": [{"ipa": "/okːɾ/", "reason": "An alveolar tap is accepted in place of the target trill.", "sourceIds": ["ut-austin-old-norse", "barnes-2008"]}],
+      "confidence": "high",
+      "quantityTargets": [{"segment": "kː", "kind": "geminate"}],
+      "ruleIds": ["consonant-gemination", "consonant-r", "stress-initial", "modern-features-excluded"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Hold kk without adding Modern Icelandic preaspiration."]
+    },
+    {
+      "id": "thinig",
+      "surface": "þinig",
+      "normalized": "þinig",
+      "canonicalIpa": "/ˈθi.niɣ/",
+      "syllables": [{"ipa": "θi", "stress": "primary"}, {"ipa": "niɣ", "stress": "unstressed"}],
+      "acceptedVariants": [],
+      "confidence": "high",
+      "quantityTargets": [],
+      "ruleIds": ["consonant-dentals", "consonant-g", "stress-initial", "unstressed-vowels"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Begin with the voiceless th sound and keep the final g as a voiced back fricative."]
+    },
+    {
+      "id": "gefid",
+      "surface": "gefið",
+      "normalized": "gefið",
+      "canonicalIpa": "/ˈge.við/",
+      "syllables": [{"ipa": "ge", "stress": "primary"}, {"ipa": "við", "stress": "unstressed"}],
+      "acceptedVariants": [],
+      "confidence": "high",
+      "quantityTargets": [],
+      "ruleIds": ["consonant-g", "consonant-f", "consonant-dentals", "stress-initial", "unstressed-vowels"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Use a hard initial g and voice the medial f."]
+    },
+    {
+      "id": "sitjondum",
+      "surface": "sitjǫndum",
+      "normalized": "sitjǫndum",
+      "canonicalIpa": "/ˈsit.jɔn.dum/",
+      "syllables": [{"ipa": "sit", "stress": "primary"}, {"ipa": "jɔn", "stress": "unstressed"}, {"ipa": "dum", "stress": "unstressed"}],
+      "acceptedVariants": [],
+      "confidence": "high",
+      "quantityTargets": [],
+      "ruleIds": ["vowel-qualities", "consonant-core", "stress-initial", "unstressed-vowels"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Keep ǫ open and rounded; do not reduce the final u."]
+    },
+    {
+      "id": "sigr",
+      "surface": "sigr",
+      "normalized": "sigr",
+      "canonicalIpa": "/siɣr/",
+      "syllables": [{"ipa": "siɣr", "stress": "primary"}],
+      "acceptedVariants": [{"ipa": "/siɣɾ/", "reason": "An alveolar tap is accepted in place of the target trill.", "sourceIds": ["ut-austin-old-norse", "barnes-2008"]}],
+      "confidence": "high",
+      "quantityTargets": [],
+      "ruleIds": ["consonant-g", "consonant-r", "stress-initial"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Keep both the back fricative and final r audible."]
+    },
+    {
+      "id": "aesir",
+      "surface": "Æsir",
+      "normalized": "æsir",
+      "canonicalIpa": "/ˈæː.sir/",
+      "syllables": [{"ipa": "æː", "stress": "primary"}, {"ipa": "sir", "stress": "unstressed"}],
+      "acceptedVariants": [{"ipa": "/ˈɛː.siɾ/", "reason": "Moderate openness variation and a tapped r are accepted.", "sourceIds": ["ut-austin-old-norse", "barnes-2008"]}],
+      "confidence": "medium",
+      "quantityTargets": [{"segment": "æː", "kind": "long-vowel"}],
+      "ruleIds": ["vowel-qualities", "vowel-length", "consonant-r", "stress-initial", "unstressed-vowels"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Keep æ long; exact openness is not a strict failure condition."]
+    },
+    {
+      "id": "heilar",
+      "surface": "Heilar",
+      "normalized": "heilar",
+      "canonicalIpa": "/ˈhei̯.lar/",
+      "syllables": [{"ipa": "hei̯", "stress": "primary"}, {"ipa": "lar", "stress": "unstressed"}],
+      "acceptedVariants": [{"ipa": "/ˈhei̯.laɾ/", "reason": "An alveolar tap is accepted in place of the target trill.", "sourceIds": ["ut-austin-old-norse", "barnes-2008"]}],
+      "confidence": "high",
+      "quantityTargets": [{"segment": "ei̯", "kind": "diphthong"}],
+      "ruleIds": ["diphthongs", "consonant-r", "stress-initial", "unstressed-vowels"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Stress hei and keep the final a clear."]
+    },
+    {
+      "id": "asynjur",
+      "surface": "Ásynjur",
+      "normalized": "ásynjur",
+      "canonicalIpa": "/ˈaː.syn.jur/",
+      "syllables": [{"ipa": "aː", "stress": "primary"}, {"ipa": "syn", "stress": "unstressed"}, {"ipa": "jur", "stress": "unstressed"}],
+      "acceptedVariants": [{"ipa": "/ˈaː.syn.juɾ/", "reason": "An alveolar tap is accepted in place of the target trill.", "sourceIds": ["ut-austin-old-norse", "barnes-2008"]}],
+      "confidence": "high",
+      "quantityTargets": [{"segment": "aː", "kind": "long-vowel"}],
+      "ruleIds": ["vowel-qualities", "vowel-length", "consonant-r", "stress-initial", "unstressed-vowels"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Hold initial á and keep y front and rounded."]
+    },
+    {
+      "id": "sja",
+      "surface": "sjá",
+      "normalized": "sjá",
+      "canonicalIpa": "/sjaː/",
+      "syllables": [{"ipa": "sjaː", "stress": "primary"}],
+      "acceptedVariants": [],
+      "confidence": "high",
+      "quantityTargets": [{"segment": "aː", "kind": "long-vowel"}],
+      "ruleIds": ["vowel-length", "consonant-core", "stress-initial"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Glide directly from j into the long vowel."]
+    },
+    {
+      "id": "in",
+      "surface": "in",
+      "normalized": "in",
+      "canonicalIpa": "/in/",
+      "syllables": [{"ipa": "in", "stress": "primary"}],
+      "acceptedVariants": [],
+      "confidence": "high",
+      "quantityTargets": [],
+      "ruleIds": ["vowel-qualities", "consonant-core", "stress-initial"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": []
+    },
+    {
+      "id": "fjolnyta",
+      "surface": "fjǫlnýta",
+      "normalized": "fjǫlnýta",
+      "canonicalIpa": "/ˈfjɔlˌnyː.ta/",
+      "syllables": [{"ipa": "fjɔl", "stress": "primary"}, {"ipa": "nyː", "stress": "secondary"}, {"ipa": "ta", "stress": "unstressed"}],
+      "acceptedVariants": [{"ipa": "/ˈfjɒlˌnyː.ta/", "reason": "Moderate openness variation in ǫ is accepted.", "sourceIds": ["ut-austin-old-norse", "barnes-2008"]}],
+      "confidence": "medium",
+      "quantityTargets": [{"segment": "yː", "kind": "long-vowel"}],
+      "ruleIds": ["vowel-qualities", "vowel-length", "stress-initial", "stress-compounds", "unstressed-vowels"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Give the first element primary stress and ný secondary stress; keep ý long and rounded."]
+    },
+    {
+      "id": "fold",
+      "surface": "fold",
+      "normalized": "fold",
+      "canonicalIpa": "/fold/",
+      "syllables": [{"ipa": "fold", "stress": "primary"}],
+      "acceptedVariants": [],
+      "confidence": "high",
+      "quantityTargets": [],
+      "ruleIds": ["vowel-qualities", "consonant-core", "stress-initial"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": []
+    },
+    {
+      "id": "mal",
+      "surface": "Mál",
+      "normalized": "mál",
+      "canonicalIpa": "/maːl/",
+      "syllables": [{"ipa": "maːl", "stress": "primary"}],
+      "acceptedVariants": [],
+      "confidence": "high",
+      "quantityTargets": [{"segment": "aː", "kind": "long-vowel"}],
+      "ruleIds": ["vowel-length", "consonant-core", "stress-initial"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Hold á clearly longer than a short a."]
+    },
+    {
+      "id": "manvit",
+      "surface": "manvit",
+      "normalized": "manvit",
+      "canonicalIpa": "/ˈmanˌβit/",
+      "syllables": [{"ipa": "man", "stress": "primary"}, {"ipa": "βit", "stress": "secondary"}],
+      "acceptedVariants": [
+        {"ipa": "/ˈmanˌwit/", "reason": "Barnes reconstructs written v with a w-like glide.", "sourceIds": ["barnes-2008"]},
+        {"ipa": "/ˈmanˌvit/", "reason": "A labiodental fricative is a permitted conservative teaching fallback.", "sourceIds": ["ut-austin-old-norse"]}
+      ],
+      "confidence": "medium",
+      "quantityTargets": [],
+      "ruleIds": ["consonant-v-disputed", "stress-initial", "stress-compounds"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["The v realization is historically disputed; β, w, and v are accepted."]
+    },
+    {
+      "id": "maerum",
+      "surface": "mærum",
+      "normalized": "mærum",
+      "canonicalIpa": "/ˈmæː.rum/",
+      "syllables": [{"ipa": "mæː", "stress": "primary"}, {"ipa": "rum", "stress": "unstressed"}],
+      "acceptedVariants": [{"ipa": "/ˈmɛː.ɾum/", "reason": "Moderate openness variation and a tapped r are accepted.", "sourceIds": ["ut-austin-old-norse", "barnes-2008"]}],
+      "confidence": "medium",
+      "quantityTargets": [{"segment": "æː", "kind": "long-vowel"}],
+      "ruleIds": ["vowel-qualities", "vowel-length", "consonant-r", "stress-initial", "unstressed-vowels"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Keep æ long; exact openness is not a strict failure condition."]
+    },
+    {
+      "id": "tveim",
+      "surface": "tveim",
+      "normalized": "tveim",
+      "canonicalIpa": "/tβei̯m/",
+      "syllables": [{"ipa": "tβei̯m", "stress": "primary"}],
+      "acceptedVariants": [
+        {"ipa": "/twei̯m/", "reason": "Barnes reconstructs written v with a w-like glide.", "sourceIds": ["barnes-2008"]},
+        {"ipa": "/tvei̯m/", "reason": "A labiodental fricative is a permitted conservative teaching fallback.", "sourceIds": ["ut-austin-old-norse"]}
+      ],
+      "confidence": "medium",
+      "quantityTargets": [{"segment": "ei̯", "kind": "diphthong"}],
+      "ruleIds": ["diphthongs", "consonant-v-disputed", "stress-initial"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Keep ei as a diphthong; β, w, and v are accepted for written v."]
+    },
+    {
+      "id": "laeknishendr",
+      "surface": "læknishendr",
+      "normalized": "læknishendr",
+      "canonicalIpa": "/ˈlæːk.nisˌhen.dr/",
+      "syllables": [{"ipa": "læːk", "stress": "primary"}, {"ipa": "nis", "stress": "unstressed"}, {"ipa": "hen", "stress": "secondary"}, {"ipa": "dr", "stress": "unstressed"}],
+      "acceptedVariants": [
+        {"ipa": "/ˈlɛːk.nisˌhen.dɾ/", "reason": "Moderate openness variation and a tapped r are accepted.", "sourceIds": ["ut-austin-old-norse", "barnes-2008"]}
+      ],
+      "confidence": "medium",
+      "quantityTargets": [{"segment": "æː", "kind": "long-vowel"}],
+      "ruleIds": ["vowel-qualities", "vowel-length", "consonant-r", "stress-initial", "stress-compounds", "unstressed-vowels"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Give læk primary stress and hendr secondary stress; do not insert a vowel into the final cluster."]
+    },
+    {
+      "id": "medan",
+      "surface": "meðan",
+      "normalized": "meðan",
+      "canonicalIpa": "/ˈme.ðan/",
+      "syllables": [{"ipa": "me", "stress": "primary"}, {"ipa": "ðan", "stress": "unstressed"}],
+      "acceptedVariants": [],
+      "confidence": "high",
+      "quantityTargets": [],
+      "ruleIds": ["vowel-qualities", "consonant-dentals", "stress-initial", "unstressed-vowels"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Keep ð voiced between the vowels."]
+    },
+    {
+      "id": "lifum",
+      "surface": "lifum",
+      "normalized": "lifum",
+      "canonicalIpa": "/ˈli.vum/",
+      "syllables": [{"ipa": "li", "stress": "primary"}, {"ipa": "vum", "stress": "unstressed"}],
+      "acceptedVariants": [],
+      "confidence": "high",
+      "quantityTargets": [],
+      "ruleIds": ["consonant-f", "stress-initial", "unstressed-vowels"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023", "ut-austin-old-norse", "barnes-2008"],
+      "teachingNotes": ["Voice the medial f and keep the final u distinct."]
+    }
+  ],
+  "lines": [
+    {
+      "id": "sigrdrifumal-03-01",
+      "order": 1,
+      "stanza": 3,
+      "editionText": "Heill, Dagr! Heilir, Dags synir!",
+      "normalizedText": "Heill dagr! Heilir dags synir!",
+      "tokenIds": ["heill", "dagr", "heilir", "dags", "synir"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023"]
+    },
+    {
+      "id": "sigrdrifumal-03-02",
+      "order": 2,
+      "stanza": 3,
+      "editionText": "Heil, Nótt ok nipt!",
+      "normalizedText": "Heil nótt ok nipt!",
+      "tokenIds": ["heil", "nott", "ok", "nipt"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023"]
+    },
+    {
+      "id": "sigrdrifumal-03-03",
+      "order": 3,
+      "stanza": 3,
+      "editionText": "Óreiðum augum lítið okkr þinig,",
+      "normalizedText": "Óreiðum augum lítið okkr þinig,",
+      "tokenIds": ["oreidum", "augum", "litid", "okkr", "thinig"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023"]
+    },
+    {
+      "id": "sigrdrifumal-03-04",
+      "order": 4,
+      "stanza": 3,
+      "editionText": "ok gefið sitjǫndum sigr!",
+      "normalizedText": "ok gefið sitjǫndum sigr!",
+      "tokenIds": ["ok", "gefid", "sitjondum", "sigr"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023"]
+    },
+    {
+      "id": "sigrdrifumal-04-01",
+      "order": 5,
+      "stanza": 4,
+      "editionText": "Heilir, Æsir! Heilar, Ásynjur!",
+      "normalizedText": "Heilir æsir! Heilar ásynjur!",
+      "tokenIds": ["heilir", "aesir", "heilar", "asynjur"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023"]
+    },
+    {
+      "id": "sigrdrifumal-04-02",
+      "order": 6,
+      "stanza": 4,
+      "editionText": "Heil, sjá in fjǫlnýta fold!",
+      "normalizedText": "Heil sjá in fjǫlnýta fold!",
+      "tokenIds": ["heil", "sja", "in", "fjolnyta", "fold"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023"]
+    },
+    {
+      "id": "sigrdrifumal-04-03",
+      "order": 7,
+      "stanza": 4,
+      "editionText": "Mál ok manvit gefið okkr mærum tveim,",
+      "normalizedText": "Mál ok manvit gefið okkr mærum tveim,",
+      "tokenIds": ["mal", "ok", "manvit", "gefid", "okkr", "maerum", "tveim"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023"]
+    },
+    {
+      "id": "sigrdrifumal-04-04",
+      "order": 8,
+      "stanza": 4,
+      "editionText": "ok læknishendr meðan lifum!",
+      "normalizedText": "ok læknishendr meðan lifum!",
+      "tokenIds": ["ok", "laeknishendr", "medan", "lifum"],
+      "sourceIds": ["eae-codex-regius", "pettit-2023"]
+    }
+  ]
+}

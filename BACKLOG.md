@@ -19,6 +19,8 @@ learner.
 
 ### RODD-001 · Freeze the source text — P0
 
+**Status:** Complete in prayer pack 1.0.0.
+
 Choose the normalized Codex Regius reading of all eight target lines while
 preserving the manuscript source and documenting every editorial normalization.
 
@@ -29,6 +31,8 @@ preserving the manuscript source and documenting every editorial normalization.
 - Stable line, word, and character identifiers survive display changes.
 
 ### RODD-002 · Declare the historical profile — P0
+
+**Status:** Complete as `west-norse-ca-1200` in prayer pack 1.0.0.
 
 Write the exact scope and limits of “Classical West Norse or Old Icelandic,
 approximately 1200,” including how it differs from a modern Icelandic reading.
@@ -41,12 +45,15 @@ approximately 1200,” including how it differs from a modern Icelandic reading.
 
 ### RODD-003 · Build the evidence ledger — P0
 
+**Status:** Complete for Contract v1.0. See
+`docs/pronunciation-evidence-ledger.md` and the machine-readable pack rules.
+
 Record the rule, sources, disagreement, selected realization, and confidence for
 every sound, stress, and length target.
 
-Use the working contract in `docs/old-norse-pronunciation-contract.md` as the
-starting hypothesis. Its statements become authoritative only when the ledger
-records the supporting evidence and any disagreement.
+The supplied working contract was used as the starting hypothesis. Contract v1
+now links its executable claims to supporting evidence and records material
+source disagreements as accepted variants.
 
 **Depends on:** RODD-001, RODD-002
 
@@ -58,6 +65,9 @@ records the supporting evidence and any disagreement.
   block mastery.
 
 ### RODD-004 · Produce the versioned prayer pack — P0
+
+**Status:** Complete as pack 1.0.0, with an offline validator and automated
+relationship tests.
 
 Encode text, phone sequences, syllables, stress, length, variants, teaching
 notes, evidence, and content identifiers in a validated local package.

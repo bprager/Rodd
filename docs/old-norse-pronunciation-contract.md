@@ -2,9 +2,9 @@
 
 **Identifier:** `ON-WN-C1200-v1.0`
 
-**Status:** Working source document. It becomes the application's authoritative
-contract only after its rule-level evidence ledger and complete eight-line text
-package pass the acceptance checks in `BACKLOG.md`.
+**Status:** Evidence-validated Contract v1.0. Its executable form is prayer pack
+1.0.0, which passes the rule, reference, confidence, and completeness checks in
+`scripts/validate_prayer_pack.py`.
 
 ## 1. Scope
 
@@ -22,16 +22,29 @@ The University of Texas materials describe reconstructed “classical” Old Nor
 
 This is appropriate for Eddic texts. The Codex Regius manuscript dates to around 1270 to 1275, while many poems may preserve older material and cannot be assigned one secure original pronunciation date.
 
+### Target text
+
+The contract covers Sigrdrífumál stanzas 3–4 in eight pedagogical
+lines. The normalized reading follows the Codex Regius electronic edition and
+Pettit's 2023 critical edition. Editorial alternatives such as `okr`, `hin`, and
+`mannvit` are recorded rather than silently mixed into the selected text.
+
+The complete text, token identifiers, and normalization decisions live in
+`content/prayer-packs/sigrdrifumal-west-norse-ca-1200/pack.json`.
+
 ## 2. Confidence classes
 
-- **A, Strong (`high`):** teach and score strictly
-- **B, Probable (`medium`):** teach one target, accept close alternatives
-- **C, Uncertain (`low`):** teach a default, but do not strongly penalize plausible variants
+- **A, Strong (`high`):** teach directly and allow the feature to affect mastery
+  when the recording evidence is also strong
+- **B, Probable (`medium`):** teach one target and accept every documented
+  alternative
+- **C, Uncertain (`low`):** teach a default as guidance only; never score it
 
 The parenthesized values are the canonical values stored in the prayer pack.
 The letter grades remain as reader-friendly shorthand in this document.
 
-Class C features must never be presented as historically certain.
+Class C features must never be presented as historically certain or affect
+mastery.
 
 ## 3. Vowels
 
@@ -93,7 +106,7 @@ Maintain them as genuine diphthongs.
 - medial or final: [v]
 - [β] accepted for voiced realization
 
-**Confidence:** B
+**Confidence:** A for the positional contrast; B for exact voiced quality.
 
 ### `g`
 - initial: [g]
@@ -101,16 +114,30 @@ Maintain them as genuine diphthongs.
 - before `s` or `t`: [x]
 - otherwise, especially intervocalically: [ɣ]
 
-**Confidence:** B
+Accept [k] before `s` or `t`.
+
+**Confidence:** A for the distribution; B for the accepted stop alternative.
 
 ### `v`
 Canonical target: [β]
 
 Accept:
 - [β], preferred
+- [w], acceptable
 - [v], acceptable
 
-**Confidence:** B. Historical `v` developed from a semivowel and changed over time.
+**Confidence:** B. The University of Texas guide gives a bilabial fricative,
+while Barnes gives a `w`-like glide. The application must not fail any of the
+three documented teaching realizations.
+
+### `p` before `s` or `t`
+
+Canonical target: [p]
+
+Accept [f]. The University of Texas guide selects the fricative in this
+environment, while Barnes presents it as an alternative.
+
+**Confidence:** B
 
 ### `n`
 Before `k` or `g`, use [ŋ].
@@ -163,7 +190,8 @@ For compounds:
 
 **Confidence:** A
 
-Incorrect primary stress should be strongly penalized.
+An incorrect primary stress may block mastery when both the historical rule and
+the acoustic judgment are high-confidence.
 
 ## 10. Unstressed vowels
 
@@ -271,7 +299,7 @@ Coach lightly:
 - `hv`
 - intonation
 
-Class C choices must not dominate the score.
+Class C choices must not contribute to the score or block mastery.
 
 ## 17. Recognition model
 
@@ -370,10 +398,28 @@ The goal is not to reproduce one imagined Viking voice.
 
 The goal is to teach a consistent, evidence-based pronunciation of Classical Old West Norse while preserving known phonemic distinctions and explicitly representing uncertainty.
 
-Once its evidence ledger and text package pass validation, this contract is the
-authoritative pronunciation standard for the application.
+This evidence-validated version is the application's operational pronunciation
+standard. It remains a transparent teaching reconstruction, not expert
+certification or a claim of uniquely correct historical speech.
+
+The machine-readable rules and word targets are authoritative when this summary
+and the pack differ. Any future change requires a new pack version and an entry
+in the evidence ledger.
 
 ## Reference sources
 
-- University of Texas Linguistics Research Center, Old Norse Online: https://lrc.la.utexas.edu/eieol/norol/10
+- [Editiones Arnamagnæanæ Electronicæ, GKS 2365 4to,
+  Sigrdrífumál](https://eae.ku.dk/q?form=register&p=eae%2Fvols%2Fstruct%2F369163)
+- Edward Pettit, [*The Poetic Edda: A Dual-Language Edition*,
+  Sigrdrífumál](https://www.openbookpublishers.com/books/10.11647/obp.0308/chapters/10.11647/obp.0308.19),
+  Open Book Publishers, 2023.
+- Michael Barnes, [*A New Introduction to Old Norse, Part I:
+  Grammar*](https://vsnr.org/wp-content/uploads/2021/11/NION-1.pdf), 3rd
+  edition, Viking Society for Northern Research, 2008, pp. 3–13.
+- University of Texas Linguistics Research Center, [Old Norse
+  Online](https://lrc.la.utexas.edu/eieol/norol/10), sections 1–2.
 - Cambridge University Press, *A Handbook to Eddic Poetry*, section on dating Eddic poetry: https://www.cambridge.org/core/books/abs/handbook-to-eddic-poetry/dating-of-eddic-poetry/A0F5C950CBEC52D0D522A1CBAC71D388
+
+See `docs/pronunciation-evidence-ledger.md` for the claim-by-claim comparison and
+`content/prayer-packs/sigrdrifumal-west-norse-ca-1200/pack.json` for executable
+targets.

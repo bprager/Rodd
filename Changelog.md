@@ -21,6 +21,11 @@ format.
 - A project-document index and current-status summary in the README.
 - A working Classical Old West Norse pronunciation contract covering the sound
   system, accepted variation, evaluation priorities, and reference-audio policy.
+- Pronunciation Contract v1 for all eight target lines, with normalized text,
+  word-level IPA, syllables, stress, quantity, variants, and teaching notes.
+- A versioned offline prayer pack containing 31 word forms and 19 evidence-backed
+  pronunciation rules.
+- A dependency-free validator and automated relationship tests for the pack.
 
 ### Changed
 
@@ -28,8 +33,13 @@ format.
   modern Icelandic profile out of scope.
 - The first milestone is the source-backed pronunciation contract, before app
   development or automated judgment begins.
-- Pronunciation research must be verified against more reliable sources before
-  it can be treated as authoritative.
+- Pronunciation research is now checked against the Codex Regius electronic
+  edition, a recent critical edition, and two independent academic teaching
+  sources before it can become executable content.
+- The supplied pronunciation document is now the human-readable contract for the
+  validated, machine-readable pack rather than an unsupported standalone draft.
+- Documented source disagreements for written `v` and `p` before `t` are accepted
+  alternatives instead of being scored as learner errors.
 - Numeric pronunciation scores, cloud accounts, social features, and additional
   texts are outside the first release.
 

@@ -8,6 +8,7 @@ Sigrdrífumál greeting and gives one useful correction at a time.
 
 - [Product and technical research](docs/Rodd_Old_Norse_Pronunciation_Coach_Design.md)
 - [App design](docs/App_Design.md)
+- [Working pronunciation contract](docs/old-norse-pronunciation-contract.md)
 - [Prioritized backlog](BACKLOG.md)
 - [Changelog](Changelog.md)
 

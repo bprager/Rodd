@@ -19,6 +19,8 @@ format.
 - A dependency-ordered backlog from source-text research through a validated
   teaching product, with priorities and acceptance checks for each item.
 - A project-document index and current-status summary in the README.
+- A working Classical Old West Norse pronunciation contract covering the sound
+  system, accepted variation, evaluation priorities, and reference-audio policy.
 
 ### Changed
 

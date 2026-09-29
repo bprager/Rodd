@@ -44,6 +44,10 @@ approximately 1200,” including how it differs from a modern Icelandic reading.
 Record the rule, sources, disagreement, selected realization, and confidence for
 every sound, stress, and length target.
 
+Use the working contract in `docs/old-norse-pronunciation-contract.md` as the
+starting hypothesis. Its statements become authoritative only when the ledger
+records the supporting evidence and any disagreement.
+
 **Depends on:** RODD-001, RODD-002
 
 **Acceptance**

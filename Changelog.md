@@ -1,9 +1,13 @@
 # Changelog
 
-This file records meaningful changes to Rǫdd. Dates use the Gregorian calendar
-and releases will follow semantic versioning once application builds begin.
+All notable changes to Rǫdd will be documented in this file.
 
-## Unreleased
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and releases will follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
+once application builds begin. Release dates use the ISO 8601 `YYYY-MM-DD`
+format.
+
+## [Unreleased]
 
 ### Added
 
@@ -16,16 +20,18 @@ and releases will follow semantic versioning once application builds begin.
   teaching product, with priorities and acceptance checks for each item.
 - A project-document index and current-status summary in the README.
 
-### Clarified
+### Changed
 
 - The initial release teaches one declared historical reconstruction and keeps a
   modern Icelandic profile out of scope.
 - The first milestone is the source-backed pronunciation contract, before app
   development or automated judgment begins.
+- Pronunciation research must be verified against more reliable sources before
+  it can be treated as authoritative.
 - Numeric pronunciation scores, cloud accounts, social features, and additional
   texts are outside the first release.
 
-## 2026-09-27
+## [0.1.0] - 2026-09-27
 
 ### Added
 

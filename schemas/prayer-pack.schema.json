@@ -10,6 +10,7 @@
     "work",
     "profile",
     "sourceWitness",
+    "referenceAudio",
     "sources",
     "rules",
     "normalizationDecisions",
@@ -42,6 +43,34 @@
         "note": {"type": "string", "minLength": 1}
       }
     },
+    "referenceAudio": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["manifest", "analysis", "attribution", "styles", "tempos"],
+      "properties": {
+        "manifest": {"type": "string", "minLength": 1},
+        "analysis": {"type": "string", "minLength": 1},
+        "attribution": {"type": "string", "minLength": 1},
+        "styles": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["precise", "naturalized"],
+          "properties": {
+            "precise": {"$ref": "#/$defs/referenceLabel"},
+            "naturalized": {"$ref": "#/$defs/referenceLabel"}
+          }
+        },
+        "tempos": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["natural", "teaching"],
+          "properties": {
+            "natural": {"$ref": "#/$defs/tempoLabel"},
+            "teaching": {"$ref": "#/$defs/tempoLabel"}
+          }
+        }
+      }
+    },
     "sources": {
       "type": "array",
       "minItems": 2,
@@ -71,6 +100,25 @@
   },
   "$defs": {
     "confidence": {"enum": ["high", "medium", "low"]},
+    "referenceLabel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "purpose", "limitation"],
+      "properties": {
+        "label": {"type": "string", "minLength": 1},
+        "purpose": {"type": "string", "minLength": 1},
+        "limitation": {"type": "string", "minLength": 1}
+      }
+    },
+    "tempoLabel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "purpose"],
+      "properties": {
+        "label": {"type": "string", "minLength": 1},
+        "purpose": {"type": "string", "minLength": 1}
+      }
+    },
     "source": {
       "type": "object",
       "additionalProperties": false,

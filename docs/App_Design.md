@@ -309,16 +309,19 @@ The first alpha is ready for use only when all of the following are true:
 
 These are research tasks, not choices to make by taste:
 
-- the two reference-generation methods and their licenses;
 - the recognition model that best meets accuracy, size, license, and latency
   needs after conversion to Core ML;
 - the amount and default lifetime of retained audio;
 - whether the proposed mastery thresholds remain meaningful after calibration.
 
 The exact normalized text, phone-level contract, and initial accepted variants
-were resolved in Pronunciation Contract v1 and prayer pack 1.0.0. They remain
-versioned scholarly decisions rather than claims of uniquely correct historical
-speech.
+were resolved in Pronunciation Contract v1. Prayer pack 1.1.0 also resolves the
+reference methods: direct-phoneme eSpeak NG is the precise teaching aid, while
+the Búi Piper voice is an explicitly approximate naturalized aid. Their
+licenses, inputs, limits, and measured tempo derivatives are recorded in the
+[reference-audio comparison](reference-audio-comparison.md). These remain
+versioned scholarly and product decisions rather than claims of uniquely
+correct historical speech.
 
 The prioritized work needed to settle these decisions is in
 [the backlog](../BACKLOG.md).

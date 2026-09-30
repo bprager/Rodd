@@ -26,6 +26,13 @@ format.
 - A versioned offline prayer pack containing 31 word forms and 19 evidence-backed
   pronunciation rules.
 - A dependency-free validator and automated relationship tests for the pack.
+- Precise and naturalized synthetic references for all eight lines at natural
+  and pitch-preserving teaching tempos, with reproducible generation scripts.
+- A versioned reference-audio manifest recording synthesis inputs, tools,
+  licenses, content versions, file formats, durations, and checksums.
+- A comparison report documenting the audible disagreements between the
+  historical teaching target and the Modern Icelandic naturalized reference.
+- Automated tempo and pitch-preservation analysis covering all 16 audio pairs.
 
 ### Changed
 
@@ -42,6 +49,8 @@ format.
   alternatives instead of being scored as learner errors.
 - Numeric pronunciation scores, cloud accounts, social features, and additional
   texts are outside the first release.
+- The prayer pack is now version 1.1.0 and includes interface-ready labels that
+  state the purpose and limitations of both reference styles and tempos.
 
 ## [0.1.0] - 2026-09-27
 

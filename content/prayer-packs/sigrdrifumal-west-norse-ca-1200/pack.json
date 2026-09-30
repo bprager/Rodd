@@ -1,5 +1,5 @@
 {
-  "packVersion": "1.0.0",
+  "packVersion": "1.1.0",
   "contractId": "ON-WN-C1200-v1.0",
   "work": "Sigrdrífumál, stanzas 3–4",
   "profile": {
@@ -13,6 +13,33 @@
     "shelfmark": "GKS 2365 4to (Codex Regius of the Poetic Edda)",
     "workLocation": "Sigrdrífumál occupies fols. 31v25–32v34; the target is stanzas 3–4 in the modern division.",
     "note": "The pack follows the EAE manuscript edition and Pettit's normalized critical edition. It does not claim that normalized spelling reproduces the manuscript's spelling character for character."
+  },
+  "referenceAudio": {
+    "manifest": "reference-audio/manifest.json",
+    "analysis": "reference-audio/analysis.json",
+    "attribution": "reference-audio/ATTRIBUTION.md",
+    "styles": {
+      "precise": {
+        "label": "Precise teaching reference",
+        "purpose": "Hear the contract's sound identities, stress, and phonemic length in a deliberately clear rendering.",
+        "limitation": "Mechanically synthesized. It is a pronunciation aid, not a model of natural historical performance."
+      },
+      "naturalized": {
+        "label": "Naturalized approximate reference",
+        "purpose": "Hear the line with smoother timing and a more human-like Icelandic neural voice.",
+        "limitation": "Uses a Modern Icelandic voice and does not define correctness. Where it conflicts with the contract, follow the precise reference and evidence ledger."
+      }
+    },
+    "tempos": {
+      "natural": {
+        "label": "Natural speed",
+        "purpose": "Normal reference playback."
+      },
+      "teaching": {
+        "label": "Teaching tempo",
+        "purpose": "Pitch-preserving 0.72× tempo for close listening."
+      }
+    }
   },
   "sources": [
     {

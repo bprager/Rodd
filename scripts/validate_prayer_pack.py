@@ -4,9 +4,11 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
+import wave
 from pathlib import Path
 from typing import Any
 
@@ -59,6 +61,7 @@ def validate_pack(data: dict[str, Any]) -> None:
             "work",
             "profile",
             "sourceWitness",
+            "referenceAudio",
             "sources",
             "rules",
             "normalizationDecisions",
@@ -70,6 +73,13 @@ def validate_pack(data: dict[str, Any]) -> None:
     require(bool(SEMVER.fullmatch(data["packVersion"])), "packVersion must be semantic x.y.z")
     require(data["contractId"] == "ON-WN-C1200-v1.0", "unexpected pronunciation contract id")
     require(data["profile"]["id"] == "west-norse-ca-1200", "unexpected profile id")
+
+    reference_audio = data["referenceAudio"]
+    require_keys(reference_audio, {"manifest", "analysis", "attribution", "styles", "tempos"}, "referenceAudio")
+    require(set(reference_audio["styles"]) == {"precise", "naturalized"}, "referenceAudio needs precise and naturalized styles")
+    require(set(reference_audio["tempos"]) == {"natural", "teaching"}, "referenceAudio needs natural and teaching tempos")
+    for style, label in reference_audio["styles"].items():
+        require_keys(label, {"label", "purpose", "limitation"}, f"referenceAudio style {style}")
 
     sources = data["sources"]
     rules = data["rules"]
@@ -150,6 +160,86 @@ def validate_pack(data: dict[str, Any]) -> None:
         require(len(set(line["sourceIds"])) >= 2, f"{label} needs manuscript and critical-edition support")
 
 
+def file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as source:
+        for block in iter(lambda: source.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def validate_reference_audio(data: dict[str, Any], pack_root: Path) -> None:
+    config = data["referenceAudio"]
+    resolved_root = pack_root.resolve()
+    paths = {
+        name: (pack_root / config[name]).resolve()
+        for name in ("manifest", "analysis", "attribution")
+    }
+    for name, path in paths.items():
+        require(path.is_relative_to(resolved_root), f"referenceAudio {name} escapes the pack")
+        require(path.is_file(), f"referenceAudio {name} is missing: {path}")
+
+    try:
+        manifest = json.loads(paths["manifest"].read_text(encoding="utf-8"))
+        analysis = json.loads(paths["analysis"].read_text(encoding="utf-8"))
+    except json.JSONDecodeError as error:
+        raise ValidationError(f"invalid reference-audio JSON: {error}") from error
+
+    require(manifest["contentVersion"] == data["packVersion"], "audio manifest content version differs from pack")
+    require(manifest["contractId"] == data["contractId"], "audio manifest contract differs from pack")
+    entries = manifest.get("entries", [])
+    require(len(entries) == 32, "audio manifest must contain 32 files")
+    unique_ids(entries, "reference-audio entries")
+    line_ids = {line["id"] for line in data["lines"]}
+    expected = {
+        (line_id, style, tempo)
+        for line_id in line_ids
+        for style in ("precise", "naturalized")
+        for tempo in ("natural", "teaching")
+    }
+    actual = {(entry.get("lineId"), entry.get("style"), entry.get("tempo")) for entry in entries}
+    require(actual == expected, "audio manifest does not cover every line, style, and tempo exactly once")
+
+    for entry in entries:
+        label = f"reference audio {entry['id']}"
+        require_keys(
+            entry,
+            {
+                "id", "lineId", "style", "tempo", "file", "sha256",
+                "contentVersion", "contractId", "inputTarget", "synthesisInput",
+                "synthesizedIpa", "sampleRate", "channels", "sampleWidthBits",
+                "durationSeconds", "method", "assetLicense",
+            },
+            label,
+        )
+        require(entry["contentVersion"] == data["packVersion"], f"{label} has wrong content version")
+        require(entry["contractId"] == data["contractId"], f"{label} has wrong contract")
+        require_keys(entry["method"], {"engine", "version", "mode", "softwareLicense"}, f"{label} method")
+        audio_path = (pack_root / entry["file"]).resolve()
+        require(audio_path.is_relative_to(resolved_root), f"{label} escapes the pack")
+        require(audio_path.is_file(), f"{label} file is missing")
+        require(file_sha256(audio_path) == entry["sha256"], f"{label} checksum mismatch")
+        with wave.open(str(audio_path), "rb") as audio:
+            require(audio.getframerate() == entry["sampleRate"] == 22050, f"{label} sample rate mismatch")
+            require(audio.getnchannels() == entry["channels"] == 1, f"{label} must be mono")
+            require(audio.getsampwidth() * 8 == entry["sampleWidthBits"] == 16, f"{label} must be 16-bit PCM")
+        if entry["tempo"] == "teaching":
+            require_keys(entry, {"tempoDerivation"}, label)
+            require_keys(
+                entry["tempoDerivation"],
+                {"sourceId", "method", "tool", "version", "softwareLicense", "purpose"},
+                f"{label} tempoDerivation",
+            )
+            require(
+                entry["tempoDerivation"]["softwareLicense"] == "GPL-3.0-or-later",
+                f"{label} needs the FFmpeg software license",
+            )
+
+    require(len(analysis.get("pairs", [])) == 16, "audio analysis must cover 16 tempo pairs")
+    require(analysis.get("allPitchPreserved") is True, "teaching tracks failed pitch-preservation analysis")
+    require(analysis.get("allTempoVerified") is True, "teaching tracks failed tempo analysis")
+
+
 def load_and_validate(pack_path: Path) -> dict[str, Any]:
     try:
         data = json.loads(pack_path.read_text(encoding="utf-8"))
@@ -157,6 +247,7 @@ def load_and_validate(pack_path: Path) -> dict[str, Any]:
         raise ValidationError(f"could not read {pack_path}: {error}") from error
     require(isinstance(data, dict), "pack root must be an object")
     validate_pack(data)
+    validate_reference_audio(data, pack_path.parent)
     return data
 
 

@@ -84,6 +84,9 @@ notes, evidence, and content identifiers in a validated local package.
 
 ### RODD-005 · Generate and review dual reference tracks — P0
 
+**Status:** Complete in prayer pack 1.1.0. See
+`docs/reference-audio-comparison.md` and the versioned audio manifest.
+
 Create a precise teaching reference and a more natural, explicitly approximate
 reference for every practice unit.
 

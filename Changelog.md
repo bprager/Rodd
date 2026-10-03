@@ -33,6 +33,14 @@ format.
 - A comparison report documenting the audible disagreements between the
   historical teaching target and the Modern Icelandic naturalized reference.
 - Automated tempo and pitch-preservation analysis covering all 16 audio pairs.
+- A native macOS application shell with Today, Lines, Sounds, Recite, Progress,
+  line-practice, and Settings views.
+- An offline bundled prayer-pack loader with clear recovery guidance for
+  missing, damaged, and incompatible content.
+- Keyboard navigation, explicit accessibility descriptions, three supported
+  reading sizes, and live accessibility-tree checks for the primary screens.
+- A repeatable macOS application build that produces an ad-hoc-signed local app
+  and runs ten completion checks.
 
 ### Changed
 
@@ -51,6 +59,8 @@ format.
   texts are outside the first release.
 - The prayer pack is now version 1.1.0 and includes interface-ready labels that
   state the purpose and limitations of both reference styles and tempos.
+- Project status now advances to reference playback; playback and recording
+  controls remain intentionally deferred to their dedicated milestones.
 
 ## [0.1.0] - 2026-09-27
 

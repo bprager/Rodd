@@ -103,6 +103,9 @@ reference for every practice unit.
 
 ### RODD-006 · Create the macOS application shell — P0
 
+**Status:** Complete in the native macOS shell. See
+`docs/macos-app-shell-verification.md`.
+
 Build the sidebar, Today view, Line practice view, Settings entry, and local
 prayer-pack loader using native macOS controls.
 

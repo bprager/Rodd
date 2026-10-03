@@ -1,6 +1,6 @@
 # Rǫdd app design
 
-Status: proposed product baseline
+Status: product baseline; application shell implemented through RODD-006
 
 Date: 29 September 2026
 

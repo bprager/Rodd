@@ -40,12 +40,16 @@ public struct RootView: View {
       content
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(RoddTheme.canvas)
+        .environment(\.colorScheme, .light)
     }
     .environment(\.dynamicTypeSize, preferredSize.dynamicTypeSize)
     .tint(RoddTheme.lichen)
     #if DEBUG
       .task {
         await AccessibilitySelfAudit.runIfRequested()
+      }
+      .task {
+        await PlaybackSelfAudit.runIfRequested(pack: model.pack)
       }
     #endif
   }
@@ -82,7 +86,8 @@ public struct RootView: View {
         LinePracticeView(
           pack: pack,
           line: line,
-          close: { model.activeLineID = nil },
+          playbackController: model.playbackController,
+          close: model.closeLine,
           openLine: model.openLine
         )
       } else {

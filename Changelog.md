@@ -3,9 +3,8 @@
 All notable changes to Rǫdd will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and releases will follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html)
-once application builds begin. Release dates use the ISO 8601 `YYYY-MM-DD`
-format.
+and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+Release dates use the ISO 8601 `YYYY-MM-DD` format.
 
 ## [Unreleased]
 
@@ -40,7 +39,14 @@ format.
 - Keyboard navigation, explicit accessibility descriptions, three supported
   reading sizes, and live accessibility-tree checks for the primary screens.
 - A repeatable macOS application build that produces an ad-hoc-signed local app
-  and runs ten completion checks.
+  and runs 17 completion checks.
+- Offline reference playback for every line, with precise and naturalized
+  sources, natural and teaching tempos, exclusive playback, progress, and clear
+  purpose and limitation labels.
+- Visible and VoiceOver-announced playback, completion, failure, and audio-output
+  recovery states.
+- Manifest validation for all 32 bundled reference recordings and an automated
+  live playback audit in the packaged application.
 
 ### Changed
 
@@ -59,8 +65,11 @@ format.
   texts are outside the first release.
 - The prayer pack is now version 1.1.0 and includes interface-ready labels that
   state the purpose and limitations of both reference styles and tempos.
-- Project status now advances to reference playback; playback and recording
-  controls remain intentionally deferred to their dedicated milestones.
+- Teaching tempo uses a dedicated pitch-preserving recording instead of changing
+  playback rate at runtime.
+- The application now follows changes to the default audio output while a
+  reference is playing and reports a useful failure if playback cannot resume.
+- Project status now advances to recording and the audio-quality gate.
 
 ## [0.1.0] - 2026-09-27
 

@@ -35,4 +35,6 @@ swift run \
     --scratch-path "$swift_scratch" \
     RoddChecks
 
+"$app/Contents/MacOS/Rodd" --playback-audit
+
 printf '%s\n' "$app"

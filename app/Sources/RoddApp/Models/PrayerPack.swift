@@ -9,6 +9,17 @@ struct PrayerPack: Decodable, Equatable, Sendable {
   let referenceAudio: ReferenceAudioConfiguration
   let lexicon: [LexiconEntry]
   let lines: [PrayerLine]
+  var referenceTracks: [ReferenceTrack] = []
+
+  private enum CodingKeys: String, CodingKey {
+    case packVersion
+    case contractId
+    case work
+    case profile
+    case referenceAudio
+    case lexicon
+    case lines
+  }
 
   var orderedLines: [PrayerLine] {
     lines.sorted { $0.order < $1.order }
@@ -17,6 +28,16 @@ struct PrayerPack: Decodable, Equatable, Sendable {
   func pronunciationGuide(for line: PrayerLine) -> String {
     let entries = Dictionary(uniqueKeysWithValues: lexicon.map { ($0.id, $0) })
     return line.tokenIds.compactMap { entries[$0]?.canonicalIpa }.joined(separator: "  ")
+  }
+
+  func referenceTrack(
+    lineID: String,
+    voice: ReferenceVoice,
+    tempo: ReferenceTempoOption
+  ) -> ReferenceTrack? {
+    referenceTracks.first {
+      $0.lineID == lineID && $0.voice == voice && $0.tempo == tempo
+    }
   }
 }
 
@@ -27,8 +48,36 @@ struct PronunciationProfile: Decodable, Equatable, Sendable {
 }
 
 struct ReferenceAudioConfiguration: Decodable, Equatable, Sendable {
+  let manifest: String
+  let analysis: String
+  let attribution: String
   let styles: [String: ReferenceStyle]
   let tempos: [String: ReferenceTempo]
+}
+
+enum ReferenceVoice: String, CaseIterable, Identifiable, Codable, Sendable {
+  case precise
+  case naturalized
+
+  var id: Self { self }
+}
+
+enum ReferenceTempoOption: String, CaseIterable, Identifiable, Codable, Sendable {
+  case natural
+  case teaching
+
+  var id: Self { self }
+}
+
+struct ReferenceTrack: Identifiable, Equatable, Sendable {
+  let id: String
+  let lineID: String
+  let voice: ReferenceVoice
+  let tempo: ReferenceTempoOption
+  let fileURL: URL
+  let duration: TimeInterval
+  let contentVersion: String
+  let inputTarget: String
 }
 
 struct ReferenceStyle: Decodable, Equatable, Sendable {

@@ -11,6 +11,7 @@ public final class AppModel: ObservableObject {
   @Published public var selectedDestination: AppDestination = .today
   @Published var activeLineID: String?
   @Published private(set) var contentState: ContentState = .loading
+  let playbackController: ReferencePlaybackController
 
   private let loadPack: () throws -> PrayerPack
 
@@ -23,8 +24,10 @@ public final class AppModel: ObservableObject {
 
   init(
     autoLoad: Bool = true,
+    playbackController: ReferencePlaybackController = ReferencePlaybackController(),
     loadPack: @escaping () throws -> PrayerPack = { try PrayerPackLoader().loadBundled() }
   ) {
+    self.playbackController = playbackController
     self.loadPack = loadPack
     if autoLoad {
       reloadContent()
@@ -53,6 +56,9 @@ public final class AppModel: ObservableObject {
   }
 
   public func select(_ destination: AppDestination) {
+    if destination != .lines {
+      playbackController.stop()
+    }
     selectedDestination = destination
     if destination != .lines {
       activeLineID = nil
@@ -60,8 +66,16 @@ public final class AppModel: ObservableObject {
   }
 
   func openLine(_ line: PrayerLine) {
+    if activeLineID != line.id {
+      playbackController.stop()
+    }
     selectedDestination = .lines
     activeLineID = line.id
+  }
+
+  func closeLine() {
+    playbackController.stop()
+    activeLineID = nil
   }
 
   func beginToday() {

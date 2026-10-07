@@ -2,7 +2,7 @@
 
 Status: proposed
 
-Last reviewed: 29 September 2026
+Last reviewed: 7 October 2026
 
 ## How to use this backlog
 
@@ -118,6 +118,9 @@ prayer-pack loader using native macOS controls.
 - The primary layouts remain usable at the supported text sizes.
 
 ### RODD-007 · Implement reference playback — P0
+
+**Status:** Complete in the native macOS app. See
+`docs/reference-playback-verification.md`.
 
 Support precise and natural reference playback at natural and teaching speeds.
 

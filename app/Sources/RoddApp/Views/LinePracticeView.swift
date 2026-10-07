@@ -3,6 +3,7 @@ import SwiftUI
 struct LinePracticeView: View {
   let pack: PrayerPack
   let line: PrayerLine
+  @ObservedObject var playbackController: ReferencePlaybackController
   let close: () -> Void
   let openLine: (PrayerLine) -> Void
 
@@ -28,9 +29,11 @@ struct LinePracticeView: View {
             .font(.headline)
             .foregroundStyle(RoddTheme.muted)
           Spacer()
-          Text("Ready to practice")
+          Text(playbackController.statusMessage)
             .font(.callout.weight(.medium))
             .foregroundStyle(RoddTheme.lichen)
+            .lineLimit(2)
+            .accessibilityLabel("Playback status: \(playbackController.statusMessage)")
         }
 
         VStack(alignment: .leading, spacing: 16) {
@@ -50,18 +53,11 @@ struct LinePracticeView: View {
         }
         .roddPanel()
 
-        ReferencePreview(pack: pack)
-
-        VStack(alignment: .leading, spacing: 10) {
-          Text("Practice controls")
-            .font(.headline)
-          Text(
-            "This foundation is ready for reference playback and recording. Those controls arrive in the next two milestones, after their behavior can be tested honestly."
-          )
-          .foregroundStyle(RoddTheme.muted)
-          .fixedSize(horizontal: false, vertical: true)
-        }
-        .roddPanel()
+        ReferencePlaybackView(
+          pack: pack,
+          line: line,
+          controller: playbackController
+        )
 
         HStack {
           if let previous {
@@ -79,30 +75,8 @@ struct LinePracticeView: View {
       .frame(maxWidth: .infinity, alignment: .topLeading)
     }
     .navigationTitle("Line \(line.order)")
-  }
-}
-
-private struct ReferencePreview: View {
-  let pack: PrayerPack
-
-  var body: some View {
-    VStack(alignment: .leading, spacing: 16) {
-      Text("Reference styles")
-        .font(.headline)
-      ForEach(["precise", "naturalized"], id: \.self) { key in
-        if let style = pack.referenceAudio.styles[key] {
-          VStack(alignment: .leading, spacing: 5) {
-            Text(style.label)
-              .font(.subheadline.weight(.semibold))
-            Text(style.purpose)
-            Text(style.limitation)
-              .foregroundStyle(RoddTheme.muted)
-          }
-          .fixedSize(horizontal: false, vertical: true)
-          .accessibilityElement(children: .combine)
-        }
-      }
+    .onDisappear {
+      playbackController.stop()
     }
-    .roddPanel()
   }
 }

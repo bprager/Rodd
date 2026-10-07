@@ -3,7 +3,7 @@ import Testing
 
 @testable import RoddKit
 
-@Suite("RODD-006 completion checks")
+@Suite("RODD-006 and RODD-007 completion checks")
 struct RoddCompletionChecks {
   @Test("The bundled prayer pack loads offline")
   func bundledPackLoads() throws {
@@ -11,6 +11,7 @@ struct RoddCompletionChecks {
     #expect(pack.packVersion == "1.1.0")
     #expect(pack.orderedLines.map(\.order) == Array(1...8))
     #expect(pack.orderedLines.first?.normalizedText == "Heill dagr! Heilir dags synir!")
+    #expect(pack.referenceTracks.count == 32)
   }
 
   @Test("Missing content provides recovery guidance")
@@ -104,6 +105,160 @@ struct RoddCompletionChecks {
       })
   }
 
+  @MainActor
+  @Test("Starting another reference stops the first one")
+  func playbackIsExclusive() throws {
+    let pack = try PrayerPackLoader().loadBundled()
+    let line = try #require(pack.orderedLines.first)
+    let precise = try #require(
+      pack.referenceTrack(lineID: line.id, voice: .precise, tempo: .natural)
+    )
+    let naturalized = try #require(
+      pack.referenceTrack(lineID: line.id, voice: .naturalized, tempo: .natural)
+    )
+    let engine = FakeAudioEngine()
+    let announcer = RecordingAnnouncer()
+    let controller = ReferencePlaybackController(engine: engine, announcer: announcer)
+
+    controller.play(precise, styleLabel: "Precise", tempoLabel: "Natural")
+    controller.play(naturalized, styleLabel: "Naturalized", tempoLabel: "Natural")
+
+    #expect(engine.playedFiles == [precise.fileURL, naturalized.fileURL])
+    #expect(controller.isPlaying(naturalized))
+    #expect(!controller.isPlaying(precise))
+    #expect(announcer.messages.last?.contains("Naturalized") == true)
+  }
+
+  @MainActor
+  @Test("Toggling the active reference stops it")
+  func playbackToggleStops() throws {
+    let pack = try PrayerPackLoader().loadBundled()
+    let line = try #require(pack.orderedLines.first)
+    let track = try #require(
+      pack.referenceTrack(lineID: line.id, voice: .precise, tempo: .natural)
+    )
+    let engine = FakeAudioEngine()
+    let controller = ReferencePlaybackController(
+      engine: engine,
+      announcer: RecordingAnnouncer()
+    )
+
+    controller.toggle(track, styleLabel: "Precise", tempoLabel: "Natural")
+    controller.toggle(track, styleLabel: "Precise", tempoLabel: "Natural")
+
+    #expect(!controller.isPlaying)
+    #expect(controller.statusMessage == "Reference playback stopped.")
+  }
+
+  @MainActor
+  @Test("Changing tempo swaps to the recorded teaching file")
+  func tempoChangeUsesRecordedFile() throws {
+    let pack = try PrayerPackLoader().loadBundled()
+    let line = try #require(pack.orderedLines.first)
+    let natural = try #require(
+      pack.referenceTrack(lineID: line.id, voice: .precise, tempo: .natural)
+    )
+    let teaching = try #require(
+      pack.referenceTrack(lineID: line.id, voice: .precise, tempo: .teaching)
+    )
+    let engine = FakeAudioEngine()
+    let controller = ReferencePlaybackController(
+      engine: engine,
+      announcer: RecordingAnnouncer()
+    )
+
+    controller.play(natural, styleLabel: "Precise", tempoLabel: "Natural")
+    controller.changeTempo(to: .teaching, for: line, in: pack)
+
+    #expect(controller.activeTrack == teaching)
+    #expect(engine.playedFiles.last == teaching.fileURL)
+    #expect(natural.fileURL != teaching.fileURL)
+  }
+
+  @MainActor
+  @Test("Playback completion is visible and announced")
+  func completionIsAnnounced() throws {
+    let pack = try PrayerPackLoader().loadBundled()
+    let line = try #require(pack.orderedLines.first)
+    let track = try #require(
+      pack.referenceTrack(lineID: line.id, voice: .precise, tempo: .natural)
+    )
+    let engine = FakeAudioEngine()
+    let announcer = RecordingAnnouncer()
+    let controller = ReferencePlaybackController(engine: engine, announcer: announcer)
+
+    controller.play(track, styleLabel: "Precise", tempoLabel: "Natural")
+    engine.finish()
+
+    #expect(controller.phase == .idle)
+    #expect(controller.statusMessage == "Reference playback finished.")
+    #expect(announcer.messages.last == controller.statusMessage)
+  }
+
+  @MainActor
+  @Test("An output change continues playback and is announced")
+  func outputChangeContinues() throws {
+    let pack = try PrayerPackLoader().loadBundled()
+    let line = try #require(pack.orderedLines.first)
+    let track = try #require(
+      pack.referenceTrack(lineID: line.id, voice: .precise, tempo: .natural)
+    )
+    let engine = FakeAudioEngine()
+    let announcer = RecordingAnnouncer()
+    let controller = ReferencePlaybackController(engine: engine, announcer: announcer)
+    controller.play(track, styleLabel: "Precise", tempoLabel: "Natural")
+
+    engine.reportOutputChange(failure: nil)
+
+    #expect(controller.isPlaying(track))
+    #expect(controller.statusMessage.contains("new output"))
+    #expect(announcer.messages.last == controller.statusMessage)
+  }
+
+  @MainActor
+  @Test("An output recovery failure stops with guidance")
+  func outputFailureStops() throws {
+    let pack = try PrayerPackLoader().loadBundled()
+    let line = try #require(pack.orderedLines.first)
+    let track = try #require(
+      pack.referenceTrack(lineID: line.id, voice: .precise, tempo: .natural)
+    )
+    let engine = FakeAudioEngine()
+    let controller = ReferencePlaybackController(
+      engine: engine,
+      announcer: RecordingAnnouncer()
+    )
+    controller.play(track, styleLabel: "Precise", tempoLabel: "Natural")
+
+    engine.reportOutputChange(failure: "Select another output and try again.")
+
+    guard case .failed(let message) = controller.phase else {
+      Issue.record("Expected a visible playback failure")
+      return
+    }
+    #expect(message.contains("playback stopped"))
+    #expect(!controller.isPlaying)
+  }
+
+  @Test("All teaching tracks passed the recorded pitch-preservation analysis")
+  func teachingTempoPreservesPitch() throws {
+    let loader = PrayerPackLoader()
+    let pack = try loader.loadBundled()
+    let packRoot = try loader.bundledFileURL().deletingLastPathComponent()
+    let data = try Data(contentsOf: packRoot.appending(path: pack.referenceAudio.analysis))
+    let analysis = try #require(JSONSerialization.jsonObject(with: data) as? [String: Any])
+    let pairs = try #require(analysis["pairs"] as? [[String: Any]])
+
+    #expect(analysis["allPitchPreserved"] as? Bool == true)
+    #expect(analysis["allTempoVerified"] as? Bool == true)
+    #expect(pairs.count == 16)
+    #expect(
+      pairs.allSatisfy {
+        guard let cents = $0["pitchDifferenceCents"] as? Double else { return false }
+        return abs(cents) <= 80
+      })
+  }
+
   private func temporaryFile(contents: Data) throws -> URL {
     let directory = FileManager.default.temporaryDirectory
       .appending(path: UUID().uuidString, directoryHint: .isDirectory)
@@ -111,6 +266,47 @@ struct RoddCompletionChecks {
     let file = directory.appending(path: "pack.json")
     try contents.write(to: file)
     return file
+  }
+}
+
+@MainActor
+private final class FakeAudioEngine: AudioPlaybackEngine {
+  var onFinished: (() -> Void)?
+  var onDecodeError: ((String) -> Void)?
+  var onOutputChanged: ((String?) -> Void)?
+  var isPlaying = false
+  var currentTime: TimeInterval = 0
+  var duration: TimeInterval = 5
+  var playedFiles: [URL] = []
+
+  func play(file: URL) throws {
+    playedFiles.append(file)
+    currentTime = 0
+    isPlaying = true
+  }
+
+  func stop() {
+    isPlaying = false
+    currentTime = 0
+  }
+
+  func finish() {
+    isPlaying = false
+    currentTime = duration
+    onFinished?()
+  }
+
+  func reportOutputChange(failure: String?) {
+    onOutputChanged?(failure)
+  }
+}
+
+@MainActor
+private final class RecordingAnnouncer: PlaybackAnnouncing {
+  private(set) var messages: [String] = []
+
+  func announce(_ message: String) {
+    messages.append(message)
   }
 }
 

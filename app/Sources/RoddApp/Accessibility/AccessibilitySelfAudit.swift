@@ -12,7 +12,10 @@
       let descriptions = collect(from: application)
       var required = ["Today", "Lines", "Sounds", "Recite", "Progress", "Settings"]
       if ProcessInfo.processInfo.arguments.contains("--line-practice") {
-        required += ["All lines", "Line 1 of 8", "Reference styles", "Next line"]
+        required += [
+          "All lines", "Line 1 of 8", "Reference playback", "Tempo",
+          "Play Precise teaching reference", "Play Naturalized approximate reference", "Next line",
+        ]
       } else {
         required += ["Today’s practice", "Begin"]
       }
